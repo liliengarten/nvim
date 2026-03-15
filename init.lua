@@ -27,7 +27,14 @@ require("lazy").setup({
 	   end
 	},
 	{ 'nvim-telescope/telescope.nvim', version = '*', dependencies = { 'nvim-lua/plenary.nvim', } },
-	{ "folke/tokyonight.nvim", lazy = false, priority = 1000 }
+	{ "folke/tokyonight.nvim", lazy = false, priority = 1000 },
+	{
+		'windwp/nvim-autopairs',
+		event = "InsertEnter",
+		config = true
+		-- use opts = {} for passing setup options
+		-- this is equivalent to setup({}) function
+	}
 })
 
 vim.cmd[[colorscheme tokyonight]]
