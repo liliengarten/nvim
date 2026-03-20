@@ -32,8 +32,19 @@ require("lazy").setup({
 		'windwp/nvim-autopairs',
 		event = "InsertEnter",
 		config = true
-		-- use opts = {} for passing setup options
-		-- this is equivalent to setup({}) function
+	},
+	{
+		"mfussenegger/nvim-lint",
+		config = function()
+			require("lint").linters_by_ft = {
+				dockerfile = { "hadolint" },
+			}
+			vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+				callback = function()
+					require("lint").try_lint()
+				end,
+			})
+		end,
 	}
 })
 
